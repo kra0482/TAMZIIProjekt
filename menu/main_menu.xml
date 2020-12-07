@@ -7,6 +7,11 @@
 
     <item
         android:id="@+id/item_main_2"
-        android:title="Delete all"/>
+        android:title="Delete all">
+    </item>
 
+    <item
+        android:id="@+id/item_main_3"
+        android:title="Settings">
+    </item>
 </menu>
