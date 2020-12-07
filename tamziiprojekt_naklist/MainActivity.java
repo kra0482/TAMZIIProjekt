@@ -80,6 +80,11 @@ public class MainActivity extends AppCompatActivity {
             recreate();
         }
 
+        if (id == R.id.item_main_3)
+        {
+
+        }
+
         return super.onOptionsItemSelected(item);
     }
 }

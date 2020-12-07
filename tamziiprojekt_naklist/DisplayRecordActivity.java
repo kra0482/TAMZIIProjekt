@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class DisplayRecordActivity extends AppCompatActivity {
     private DBHelper mydb;
     TextView nameTextView;
+    TextView priceTextView;
     int id_update = 0;
 
     @Override
@@ -24,6 +25,7 @@ public class DisplayRecordActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display_record);
 
         nameTextView = findViewById(R.id.editTextName);
+        priceTextView = findViewById(R.id.editTextPrice);
         mydb = new DBHelper(this);
         Intent i = getIntent();
         if(i != null)
@@ -39,6 +41,7 @@ public class DisplayRecordActivity extends AppCompatActivity {
 
                 //z DB vytahnu jmeno zaznamu
                 String nameDB = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_NAME));
+                String priceDB = rs.getString(rs.getColumnIndex(DBHelper.CONTACTS_COLUMN_NAME));
 
                 if (!rs.isClosed())
                 {
@@ -52,7 +55,70 @@ public class DisplayRecordActivity extends AppCompatActivity {
                 nameTextView.setFocusable(false);
                 nameTextView.setClickable(false);
 
+                priceTextView.setText(priceDB);
+                priceTextView.setEnabled(false);
+                priceTextView.setFocusable(false);
+                priceTextView.setClickable(false);
+
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        if(id_update>0){
+            getMenuInflater().inflate(R.menu.display_record_menu, menu);
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.Edit_Contact) {
+            Button b = findViewById(R.id.buttonSave);
+            b.setVisibility(View.VISIBLE);
+
+            nameTextView.setEnabled(true);
+            nameTextView.setFocusableInTouchMode(true);
+            nameTextView.setClickable(true);
+
+            priceTextView.setEnabled(true);
+            priceTextView.setFocusableInTouchMode(true);
+            priceTextView.setClickable(true);
+
+        }
+        if (id == R.id.Delete_Contact)
+        {
+            mydb.deleteContact(id_update);
+            finish();
+        }
+
+        return true;
+    }
+
+    public void saveButtonAction(View view)
+    {
+
+        if(id_update>0){
+            mydb.updateContact(id_update, nameTextView.getText().toString());
+            mydb.updateContact(id_update, priceTextView.getText().toString());
+            finish();
+        }
+        else{
+            //vlozeni zaznamu
+            if(mydb.insertContact(nameTextView.getText().toString())){
+                Toast.makeText(getApplicationContext(), "saved", Toast.LENGTH_SHORT).show();
+            }
+
+            else{
+                Toast.makeText(getApplicationContext(), "not saved", Toast.LENGTH_SHORT).show();
+            }
+            finish();
+        }
+
     }
 }
