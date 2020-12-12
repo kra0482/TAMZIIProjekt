@@ -2,6 +2,7 @@ package com.example.tamziiprojekt_naklist;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -82,7 +83,13 @@ public class MainActivity extends AppCompatActivity {
 
         if (id == R.id.item_main_3)
         {
+            Intent displaySettings = new Intent(getApplicationContext(), DisplaySettingsActivity.class);
+            startActivity(displaySettings);
+        }
 
+        if (id == R.id.item_main_4)
+        {
+            finish();
         }
 
         return super.onOptionsItemSelected(item);
