@@ -1,13 +1,12 @@
 package com.example.tamziiprojekt_naklist;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     DBHelper mydb;
     private ListView itemListView;
     public static ArrayList<Long> arrayListId;
+    float x1,x2,y1,y2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +73,26 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
+    public boolean onTouchEvent(MotionEvent touchEvent){
+        switch(touchEvent.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                x1 = touchEvent.getX();
+                y1 = touchEvent.getY();
+                break;
+            case MotionEvent.ACTION_UP:
+                x2 = touchEvent.getX();
+                y2 = touchEvent.getY();
+                if(x1 < x2){
+                Intent displayRecord = new Intent(MainActivity.this, DisplayRecordActivity.class);
+                startActivity(displayRecord);
+            }else if(x1 > x2){
+                Intent displaySettings = new Intent(MainActivity.this, DisplaySettingsActivity.class);
+                startActivity(displaySettings);
+            }
+            break;
+        }
+        return false;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

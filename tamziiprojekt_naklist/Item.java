@@ -53,6 +53,6 @@ public class Item {
 
     @Override
     public String toString() {
-        return this.name + ": " + this.cost;
+        return this.name + ": " + " price:"+ this.cost + this.type;
     }
 }
