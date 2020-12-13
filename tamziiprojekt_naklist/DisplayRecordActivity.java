@@ -151,10 +151,17 @@ public class DisplayRecordActivity extends AppCompatActivity {
         }
     }
 
+    public void backButtonAction(View view) {
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(i);
+    }
+
     @Override
     public void onBackPressed() {
         finish();
         Intent i = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(i);
     }
+
+
 }

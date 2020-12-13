@@ -79,13 +79,22 @@
 
 
         <Button
+            android:id="@+id/buttonSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Save"
-            android:id="@+id/buttonSave"
+            android:layout_marginTop="190dp"
+            android:layout_marginLeft="75dp"
             android:onClick="saveButtonAction"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="170dp" />
+            android:text="Save" />
+
+        <Button
+            android:id="@+id/buttonBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="190dp"
+            android:layout_marginLeft="200dp"
+            android:onClick="backButtonAction"
+            android:text="Back" />
 
     </RelativeLayout>
 </ScrollView>

@@ -18,7 +18,6 @@ public class Item {
         this.cost = cost;
     }
 
-
     public int getId() {
         return id;
     }
