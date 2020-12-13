@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item android:id="@+id/item_main_1"
-        android:title="Add Item" >
+    <item android:id="@+id/Add_Item"
+        android:title="Add Item"
+        android:icon="@drawable/ic_outline_check_circle_24">
     </item>
 
     <item
-        android:id="@+id/item_main_2"
-        android:title="Delete all">
+        android:id="@+id/Delete_All"
+        android:title="Delete all"
+        android:icon="@drawable/ic_outline_cancel_24">
     </item>
 
     <item
-        android:id="@+id/item_main_3"
-        android:title="Settings">
+        android:id="@+id/Settings"
+        android:title="About"
+        android:icon="@drawable/ic_baseline_settings_24">
     </item>
 
-    <item
-        android:id="@+id/item_main_4"
-        android:title="Quit App">
-    </item>
 </menu>

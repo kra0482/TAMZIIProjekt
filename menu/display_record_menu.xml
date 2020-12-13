@@ -1,10 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <item
         android:id="@+id/Edit_Contact"
-        android:title="Edit"/>
+        android:title="Edit"
+        android:icon="@drawable/ic_outline_edit_24"/>
 
     <item
         android:id="@+id/Delete_Contact"
-        android:title="Delete"/>
+        android:title="Delete"
+        android:icon="@drawable/ic_outline_cancel_24"/>
 
 </menu>
