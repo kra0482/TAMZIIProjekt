@@ -6,21 +6,38 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     android:paddingBottom="16dp"
+    android:background="@color/colorPrimary"
     tools:context=".MainActivity">
 
     <ListView
         android:id="@+id/listView1"
         android:layout_width="320dp"
-        android:layout_height="590dp"
-        android:layout_below="@+id/textView"
+        android:layout_height="550dp"
+        android:layout_below="@+id/textView1"
         android:layout_marginLeft="25dp"
+        android:layout_marginTop="79dp"
         android:layout_marginRight="25dp"
-        android:layout_marginTop="10dp"></ListView>
+        android:background="@color/colorList"
+        android:textColor="@color/textColor"></ListView>
+
+    <TextView
+        android:id="@+id/swipesInfo"
+        android:layout_width="240dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/textView1"
+        android:layout_marginLeft="96dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginRight="97dp"
+        android:gravity="center"
+        android:text="Swipes: \n Swipe Left - Add Item \n Swipe Right - Favorites"
+        android:textColor="@color/textColor"
+        android:textSize="13dp"></TextView>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView"
+        android:id="@+id/textView1"
+        android:textColor="@color/textColor"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textSize="30dp"

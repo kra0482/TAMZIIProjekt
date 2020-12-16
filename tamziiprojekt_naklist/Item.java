@@ -50,8 +50,9 @@ public class Item {
         this.cost = cost;
     }
 
+
     @Override
     public String toString() {
-        return this.name + ": " + " price:"+ this.cost + this.type;
+        return this.name  + " - price: "+ this.cost;
     }
 }

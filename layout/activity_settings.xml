@@ -4,57 +4,81 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
 
     <TextView
         android:id="@+id/aboutHeader"
         android:layout_width="245dp"
         android:layout_height="70dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginLeft="75dp"
         android:layout_marginTop="105dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginRight="75dp"
         android:layout_marginBottom="577dp"
-        android:text="About"
-        android:textColor="#000000"
+        android:gravity="center_horizontal"
+        android:text="Settings"
+        android:textColor="@color/textColor"
         android:textSize="46dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        android:layout_marginRight="97dp"
-        android:layout_marginLeft="96dp"
-        android:gravity="center_horizontal" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/About"
         android:layout_width="245dp"
         android:layout_height="70dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginRight="75dp"
         android:gravity="center_horizontal"
         android:text="TAMZ 2 Project KRA0482"
-        android:textColor="#000000"
+        android:textColor="@color/textColor"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/aboutHeader"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/swipesInfo"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="577dp"
-        android:text="Swipes: \n Swipe Left - Add Item \n Swipe Right - About"
-        android:textColor="#000000"
-        android:textSize="24dp"
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchCompat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="40dp"
+        android:checked="false"
+        android:padding="10dp"
+        android:text="Dark Mode"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginStart="75dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginRight="75dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aboutHeader"
-        android:layout_marginRight="97dp"
-        android:layout_marginLeft="96dp"
-        android:gravity="center_horizontal" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:switchPadding="10dp" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginRight="75dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/About"
+        app:srcCompat="@drawable/day" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

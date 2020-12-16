@@ -2,6 +2,7 @@ package com.example.tamziiprojekt_naklist;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +15,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.view.menu.MenuBuilder;
 
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     DBHelper mydb;
     private ListView itemListView;
     public static ArrayList<Long> arrayListId;
+    SharedPreferences sharedPreferences = null;
     float x1,x2,y1,y2;
 
     @Override
@@ -30,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        sharedPreferences = getSharedPreferences("night",0);
+        Boolean booleanValue = sharedPreferences.getBoolean("night_mode",true);
+        if (booleanValue) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
         mydb = new DBHelper(this);
         //ziskam do jedno listu vsechny polozky
         ArrayList arrayList = mydb.getItemList();
@@ -82,14 +90,14 @@ public class MainActivity extends AppCompatActivity {
             case MotionEvent.ACTION_UP:
                 x2 = touchEvent.getX();
                 y2 = touchEvent.getY();
-                if(x1 < x2){
-                Intent displayRecord = new Intent(MainActivity.this, DisplayRecordActivity.class);
-                startActivity(displayRecord);
-            }else if(x1 > x2){
-                Intent displaySettings = new Intent(MainActivity.this, DisplaySettingsActivity.class);
+                if(x1 < x2) {
+                    Intent displayRecord = new Intent(MainActivity.this, DisplayRecordActivity.class);
+                    startActivity(displayRecord);
+                }else if(x1 > x2){
+                Intent displaySettings = new Intent(MainActivity.this, DisplayFavorite.class);
                 startActivity(displaySettings);
-            }
-            break;
+                }
+                break;
         }
         return false;
     }
@@ -110,6 +118,12 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Deleted records: " + nRowDeleted, Toast.LENGTH_SHORT).show();
             ping.start();
             recreate();
+        }
+
+        if (id == R.id.Favorite)
+        {
+            Intent displayFav = new Intent(getApplicationContext(), DisplayFavorite.class);
+            startActivity(displayFav);
         }
 
         if (id == R.id.Settings)

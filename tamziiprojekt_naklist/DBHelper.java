@@ -7,6 +7,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import java.util.ArrayList;
+
 public class DBHelper extends SQLiteOpenHelper{
 
     public static final String DATABASE_NAME = "DBTAMZ2.db";
@@ -47,6 +54,7 @@ public class DBHelper extends SQLiteOpenHelper{
 
     public boolean deleteItem (int id)
     {
+        //TODO 3: doplnit kod pro odstraneni zaznamu
         SQLiteDatabase db = this.getWritableDatabase();
 
 //        db.execSQL("DELETE FROM " + ITEM_TABLE_NAME + " WHERE id=" + id);
@@ -64,6 +72,7 @@ public class DBHelper extends SQLiteOpenHelper{
 
     public boolean updateItem (Item item)
     {
+        //TODO 4: doplnit kod pro update zaznamu
         SQLiteDatabase db = this.getWritableDatabase();
 //        db.execSQL("UPDATE " + ITEM_TABLE_NAME + " SET " + ITEM_COLUMN_NAME + "=\"" + name + "\" WHERE id=" + id);
         ContentValues contentValues = new ContentValues();
@@ -83,6 +92,7 @@ public class DBHelper extends SQLiteOpenHelper{
         res.moveToFirst();
 
         while(res.isAfterLast() == false){
+            //TODO 6: doplnit kod i pro další sloupce tabulky (například ITEM_COLUMN_COST)
             String name = res.getString(res.getColumnIndex(ITEM_COLUMN_NAME));
             int cost = res.getInt(res.getColumnIndex(ITEM_COLUMN_COST));
             int type = res.getInt(res.getColumnIndex(ITEM_COLUMN_TYPE));
@@ -96,8 +106,11 @@ public class DBHelper extends SQLiteOpenHelper{
 
     public int removeAll()
     {
+        //TODO 5: doplnit kod pro odstraneni vsech zaznamu
         SQLiteDatabase db = this.getWritableDatabase();
         int nRecordDeleted = db.delete(ITEM_TABLE_NAME, null, null);
         return nRecordDeleted;
     }
+
+
 }

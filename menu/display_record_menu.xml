@@ -2,11 +2,13 @@
     <item
         android:id="@+id/Edit_Contact"
         android:title="Edit"
+        android:textColor="@color/textColor"
         android:icon="@drawable/ic_outline_edit_24"/>
 
     <item
         android:id="@+id/Delete_Contact"
         android:title="Delete"
+        android:textColor="@color/textColor"
         android:icon="@drawable/ic_outline_cancel_24"/>
 
 </menu>

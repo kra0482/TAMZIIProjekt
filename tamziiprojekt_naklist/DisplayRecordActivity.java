@@ -1,6 +1,9 @@
 package com.example.tamziiprojekt_naklist;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.content.Intent;
 import android.database.Cursor;
@@ -15,6 +18,8 @@ import android.widget.Toast;
 
 import java.util.Arrays;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.view.menu.MenuBuilder;
 
 public class DisplayRecordActivity extends AppCompatActivity {
@@ -22,6 +27,7 @@ public class DisplayRecordActivity extends AppCompatActivity {
     TextView nameTextView;
     TextView costTextView;
     Spinner spinnerType;
+    SharedPreferences sharedPreferences = null;
 
     int idToUpdate;
 
@@ -29,6 +35,12 @@ public class DisplayRecordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_record);
+
+        sharedPreferences = getSharedPreferences("night",0);
+        Boolean booleanValue = sharedPreferences.getBoolean("night_mode",true);
+        if (booleanValue){
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
 
         nameTextView = findViewById(R.id.editTextName);
         costTextView = findViewById(R.id.editTextPrice);
@@ -57,7 +69,6 @@ public class DisplayRecordActivity extends AppCompatActivity {
                 String nameDB = rs.getString(rs.getColumnIndex(DBHelper.ITEM_COLUMN_NAME));
                 int type = rs.getInt(rs.getColumnIndex(DBHelper.ITEM_COLUMN_TYPE));
                 int cost = rs.getInt(rs.getColumnIndex(DBHelper.ITEM_COLUMN_COST));
-
 
                 if (!rs.isClosed())
                 {
@@ -115,6 +126,7 @@ public class DisplayRecordActivity extends AppCompatActivity {
             costTextView.setFocusableInTouchMode(true);
             costTextView.setClickable(true);
 
+
         }
         if (id == R.id.Delete_Contact)
         {
@@ -130,6 +142,8 @@ public class DisplayRecordActivity extends AppCompatActivity {
     public void saveButtonAction(View view)
     {
         Item item = new Item(idToUpdate, nameTextView.getText().toString(), (int) spinnerType.getSelectedItemId(), Integer.parseInt(costTextView.getText().toString()));
+        final MediaPlayer err = MediaPlayer.create(this, R.raw.erro);
+        final MediaPlayer ding = MediaPlayer.create(this, R.raw.ding);
         if(idToUpdate > 0){
             mydb.updateItem(item);
             finish();
@@ -140,20 +154,17 @@ public class DisplayRecordActivity extends AppCompatActivity {
             //vlozeni zaznamu
             if(mydb.insertItem(item)){
                 Toast.makeText(getApplicationContext(), "saved", Toast.LENGTH_SHORT).show();
+                ding.start();
             }
 
             else{
                 Toast.makeText(getApplicationContext(), "not saved", Toast.LENGTH_SHORT).show();
+                err.start();
             }
             finish();
             Intent i = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(i);
         }
-    }
-
-    public void backButtonAction(View view) {
-        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(i);
     }
 
     @Override
@@ -162,6 +173,5 @@ public class DisplayRecordActivity extends AppCompatActivity {
         Intent i = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(i);
     }
-
 
 }
